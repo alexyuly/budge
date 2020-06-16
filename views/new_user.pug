@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 New User
+  form(action="new_user", method="post")
+    label Name 
+      input(type="text", name="name")
+    button(type="submit") Submit

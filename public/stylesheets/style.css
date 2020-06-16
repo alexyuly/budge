@@ -1,0 +1,21 @@
+body {
+  padding: 30px;
+  font: 15px sans-serif;
+}
+
+input {
+  font: 15px sans-serif;
+}
+
+form label {
+  margin: 15px 0 15px 0;
+}
+
+form input {
+  display: block;
+}
+
+form button {
+  display: block;
+  margin: 15px 0 15px 0;
+}
