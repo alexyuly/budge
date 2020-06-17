@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h2 Navigation
+  ul
+    li: a(href=`../edit_user/${user._id}`) Back to Edit User...
+  h2 Delete User "#{user.name}"?
+  form(action=user._id, method="post")
+    button(type="submit") Yes, Delete User "#{user.name}"

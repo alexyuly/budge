@@ -22,4 +22,8 @@ module.exports = {
     const collection = db.collection('users');
     return collection.updateOne({ _id: new ObjectID(id) }, { $set: user });
   },
+  deleteUser(db, id) {
+    const collection = db.collection('users');
+    return collection.deleteOne({ _id: new ObjectID(id) });
+  }
 };

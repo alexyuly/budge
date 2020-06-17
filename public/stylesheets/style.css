@@ -1,6 +1,22 @@
 body {
-  padding: 30px;
+  background-color: #333333;
+  color: #ffffff;
   font: 15px sans-serif;
+  padding: 30px;
+}
+
+a {
+  color: #ccffff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ccccff;
+  text-decoration: underline;
+}
+
+li {
+  margin: 5px 0 5px 0;
 }
 
 input {
@@ -15,7 +31,10 @@ form input {
   display: block;
 }
 
-form button {
+form button[type="submit"] {
+  cursor: pointer;
   display: block;
+  font-weight: bold;
   margin: 15px 0 15px 0;
+  padding: 5px 15px 5px 15px;
 }

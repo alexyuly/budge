@@ -1,8 +1,11 @@
 extends layout
 
 block content
-  h1 Manage Users
+  h2 Navigation
   ul
+    li: a(href="../") Back to Main Menu...
     li: a(href="new_user") New User...
+  h2 Manage Users
+  ul
     for user in user_list
       li: a(href=`edit_user/${user._id}`)= user.name
