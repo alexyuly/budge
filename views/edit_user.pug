@@ -8,5 +8,5 @@ block content
   h2 Edit User
   form(action=user._id, method="post")
     label Name 
-      input(type="text", name="name", value=user.name, autoFocus=true)
+      input(type="text", name="name", autoFocus=true, value=user.name)
     button(type="submit") Submit

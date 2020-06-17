@@ -23,12 +23,24 @@ input {
   font: 15px sans-serif;
 }
 
-form label {
+form > label {
   margin: 15px 0 15px 0;
 }
 
-form input {
+form fieldset label {
   display: block;
+  margin: 5px 0 5px 0;
+}
+
+form input[type="text"],
+form input[type="number"],
+form fieldset {
+  display: block;
+  margin: 5px 0 15px 0;
+}
+
+form input[type="checkbox"] {
+  margin: 0 5px 0 0;
 }
 
 form button[type="submit"] {

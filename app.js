@@ -5,10 +5,15 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const newUserRouter = require('./routes/new_user');
+
 const manageUsersRouter = require('./routes/manage_users');
+const newUserRouter = require('./routes/new_user');
 const editUserRouter = require('./routes/edit_user');
 const deleteUserRouter = require('./routes/delete_user');
+
+const manageAccountsRouter = require('./routes/manage_accounts');
+const newAccountRouter = require('./routes/new_account');
+const editAccountRouter = require('./routes/edit_account');
 
 module.exports = function(db) {
   const app = express();
@@ -24,10 +29,15 @@ module.exports = function(db) {
   app.use(express.static(path.join(__dirname, 'public')));
   
   app.use('/', indexRouter);
-  app.use('/new_user', newUserRouter(db));
+
   app.use('/manage_users', manageUsersRouter(db));
+  app.use('/new_user', newUserRouter(db));
   app.use('/edit_user', editUserRouter(db));
   app.use('/delete_user', deleteUserRouter(db));
+  
+  app.use('/manage_accounts', manageAccountsRouter(db));
+  app.use('/new_account', newAccountRouter(db));
+  app.use('/edit_account', editAccountRouter(db));
   
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {

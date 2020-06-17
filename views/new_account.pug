@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h2 Navigation
+  ul
+    li: a(href="../manage_accounts") Back to Manage Accounts...
+  h2 New Account
+  form(action="new_account", method="post")
+    label Name 
+      input(type="text", name="name", autoFocus=true)
+    label Initial Amount $
+      input(type="number", name="initial_usd_amount")
+    fieldset
+      legend Owners
+      for user in user_list
+        label
+          input(type="checkbox", name=`user_${user._id}`)
+          =user.name
+    button(type="submit") Submit

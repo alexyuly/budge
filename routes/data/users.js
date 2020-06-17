@@ -1,6 +1,16 @@
 const assert = require('assert');
 const { ObjectID } = require('mongodb');
 
+function validateUser(user) {
+  assert(typeof user.name === 'string', 'Cannot create a new user with a name that is not a string.');
+}
+
+function parseUser(user) {
+  return {
+    name: user.name,
+  };
+}
+
 module.exports = {
   getAllUsers(db) {
     const collection = db.collection('users');
@@ -11,16 +21,14 @@ module.exports = {
     return collection.findOne({ _id: new ObjectID(id) });
   },
   newUser(db, user) {
-    assert(typeof user.name === 'string', 'Cannot create a new user with a name that is not a string.');
+    validateUser(user);
     const collection = db.collection('users');
-    return collection.insertOne(user);
+    return collection.insertOne(parseUser(user));
   },
   editUser(db, id, user) {
-    if ('name' in user) {
-      assert(typeof user.name === 'string', 'Cannot edit a user with a name that is not a string.');
-    }
+    validateUser(user);
     const collection = db.collection('users');
-    return collection.updateOne({ _id: new ObjectID(id) }, { $set: user });
+    return collection.updateOne({ _id: new ObjectID(id) }, { $set: parseUser(user) });
   },
   deleteUser(db, id) {
     const collection = db.collection('users');
