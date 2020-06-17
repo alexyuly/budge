@@ -3,5 +3,6 @@ extends layout
 block content
   h1 Manage Users
   ul
+    li: a(href="new_user") New User...
     for user in user_list
       li: a(href=`edit_user/${user._id}`)= user.name

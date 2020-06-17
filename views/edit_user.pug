@@ -4,5 +4,5 @@ block content
   h1 Edit User
   form(action=user._id, method="post")
     label Name 
-      input(type="text", name="name", value=user.name)
+      input(type="text", name="name", value=user.name, autoFocus=true)
     button(type="submit") Submit

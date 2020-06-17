@@ -9,8 +9,8 @@ module.exports = function(db) {
   });
   
   router.post('/', function(req, res, next) {
-    data.postNewUser(db, req.body).then(function() {
-      res.redirect('../');
+    data.newUser(db, req.body).then(function() {
+      res.redirect('../manage_users');
     }).catch(next);
   });
 
