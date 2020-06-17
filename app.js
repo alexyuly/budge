@@ -6,6 +6,8 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const newUserRouter = require('./routes/new_user');
+const manageUsersRouter = require('./routes/manage_users');
+const editUserRouter = require('./routes/edit_user');
 
 module.exports = function(db) {
   const app = express();
@@ -22,6 +24,8 @@ module.exports = function(db) {
   
   app.use('/', indexRouter);
   app.use('/new_user', newUserRouter(db));
+  app.use('/manage_users', manageUsersRouter(db));
+  app.use('/edit_user', editUserRouter(db));
   
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {

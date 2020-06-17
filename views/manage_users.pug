@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h1 Manage Users
+  ul
+    for user in user_list
+      li: a(href=`edit_user/${user._id}`)= user.name

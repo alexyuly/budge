@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 Edit User
+  form(action=user._id, method="post")
+    label Name 
+      input(type="text", name="name", value=user.name)
+    button(type="submit") Submit

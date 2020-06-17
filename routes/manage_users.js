@@ -5,12 +5,10 @@ module.exports = function(db) {
   const router = express.Router();
   
   router.get('/', function(req, res, next) {
-    res.render('new_user');
-  });
-  
-  router.post('/', function(req, res, next) {
-    data.postNewUser(db, req.body).then(function() {
-      res.redirect('../');
+    data.getAllUsers(db).then(function(user_list) {
+      res.render('manage_users', {
+        user_list,
+      });
     }).catch(next);
   });
 
