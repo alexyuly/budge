@@ -3,17 +3,21 @@ extends layout
 block content
   h2 Navigation
   ul
-    li: a(href="../manage_accounts") Back to Manage Accounts...
+    li: a(href="../manage_accounts") Back to Accounts...
   h2 Edit Account
   form(action=account._id, method="post")
     label Name 
       input(type="text", name="name", autoFocus=true, value=account.name)
-    label Initial Amount $
-      input(type="number", name="initial_usd_amount", value=account.initial_usd_amount)
     fieldset
       legend Owners
       for user in user_list
         label
-          input(type="checkbox", name=`user_${user._id}`, checked=account.owner_user_id_list.map(id => id.toHexString()).includes(user._id.toHexString()))
+          input(
+            type="checkbox",
+            name=`user_${user._id}`,
+            checked=account.owner_user_id_list.some(id => user._id.equals(id))
+          )
           =user.name
+    label List Order
+      input(type="number", name="order", value=account.order)
     button(type="submit") Submit

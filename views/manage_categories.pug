@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h2 Navigation
+  ul
+    li: a(href="../") Back to Home...
+    li: a(href="new_category") New Category...
+  h2 Categories
+  ul
+    for category in category_list
+      li: a(href=`edit_category/${category._id}`)= category.name
