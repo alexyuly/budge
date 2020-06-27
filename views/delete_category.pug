@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h2 Navigation
+  ul
+    li: a(href=`../edit_category/${category._id}`) Back to Edit Category...
+  h2 Delete Category "#{category.name}"?
+  form(action=category._id, method="post")
+    button(type="submit") Yes, Delete Category "#{category.name}"

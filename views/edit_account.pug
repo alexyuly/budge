@@ -4,6 +4,7 @@ block content
   h2 Navigation
   ul
     li: a(href="../manage_accounts") Back to Accounts...
+    li: a(href=`../delete_account/${account._id}`) Delete This Account...
   h2 Edit Account
   form(action=account._id, method="post")
     label Name 

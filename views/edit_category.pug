@@ -4,6 +4,7 @@ block content
   h2 Navigation
   ul
     li: a(href="../manage_categories") Back to Categories...
+    li: a(href=`../delete_category/${category._id}`) Delete This Category...
   h2 Edit Category
   form(action=category._id, method="post")
     label Name 

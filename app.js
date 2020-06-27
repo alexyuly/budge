@@ -14,10 +14,12 @@ const deleteUserRouter = require("./routes/delete_user");
 const manageAccountsRouter = require("./routes/manage_accounts");
 const newAccountRouter = require("./routes/new_account");
 const editAccountRouter = require("./routes/edit_account");
+const deleteAccountRouter = require("./routes/delete_account");
 
 const manageCategoriesRouter = require("./routes/manage_categories");
 const newCategoryRouter = require("./routes/new_category");
 const editCategoryRouter = require("./routes/edit_category");
+const deleteCategoryRouter = require("./routes/delete_category");
 
 const newTransactionRouter = require("./routes/new_transaction");
 
@@ -44,10 +46,12 @@ module.exports = function (db) {
   app.use("/manage_accounts", manageAccountsRouter(db));
   app.use("/new_account", newAccountRouter(db));
   app.use("/edit_account", editAccountRouter(db));
+  app.use("/delete_account", deleteAccountRouter(db));
 
   app.use("/manage_categories", manageCategoriesRouter(db));
   app.use("/new_category", newCategoryRouter(db));
   app.use("/edit_category", editCategoryRouter(db));
+  app.use("/delete_category", deleteCategoryRouter(db));
 
   app.use("/new_transaction", newTransactionRouter(db));
 

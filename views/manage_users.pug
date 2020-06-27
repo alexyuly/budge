@@ -11,6 +11,6 @@ block content
       tr
         th Name
     tbody
-      for user in user_list.sort((a, b) => b.order - a.order)
+      for user in user_list.sort((a, b) => a.order - b.order)
         tr
           td: a(href=`edit_user/${user._id}`)= user.name

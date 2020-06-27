@@ -13,7 +13,7 @@ block content
         th Description
         th Users
     tbody
-      for account in account_list.sort((a, b) => b.order - a.order)
+      for account in account_list.sort((a, b) => a.order - b.order)
         tr
           td: a(href=`edit_account/${account._id}`)= account.name
           td= account.description

@@ -9,7 +9,7 @@ block content
     li: a(href="new_transaction") New Transaction...
   h2 Transactions
   table
-    - const sortedAccountList = account_list.sort((a, b) => b.order - a.order);
+    - const sortedAccountList = account_list.sort((a, b) => a.order - b.order);
     thead
       tr
         th Date/Time

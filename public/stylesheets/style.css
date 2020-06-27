@@ -1,3 +1,9 @@
+@media screen and (max-device-width: 480px){
+  body{
+    -webkit-text-size-adjust: none;
+  }
+}
+
 body {
   background-color: #333333;
   color: #ffffff;
@@ -54,15 +60,15 @@ form button[type="submit"] {
   padding: 5px 15px 5px 15px;
 }
 
+table {
+  border-bottom: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+}
+
 th,
 td {
   border-left: 1px solid #ffffff;
   border-top: 1px solid #ffffff;
   padding: 5px;
   text-align: left;
-}
-
-table {
-  border-bottom: 1px solid #ffffff;
-  border-right: 1px solid #ffffff;
 }
