@@ -6,6 +6,11 @@ block content
     li: a(href="../") Back to Home...
     li: a(href="new_user") New User...
   h2 Users
-  ul
-    for user in user_list
-      li: a(href=`edit_user/${user._id}`)= user.name
+  table
+    thead
+      tr
+        th Name
+    tbody
+      for user in user_list.sort((a, b) => b.order - a.order)
+        tr
+          td: a(href=`edit_user/${user._id}`)= user.name

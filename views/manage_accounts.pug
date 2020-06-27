@@ -6,11 +6,15 @@ block content
     li: a(href="../") Back to Home...
     li: a(href="new_account") New Account...
   h2 Accounts
-  ul
-    for account in account_list
-      li: a(href=`edit_account/${account._id}`)
-        = account.name
-        - const account_user_id_list = user_list.filter(user => account.user_id_list.some(id => user._id.equals(id)));
-        = account_user_id_list.length > 0 ? ' (' : ''
-        = account_user_id_list.map(user => user.name).join(', ')
-        = account_user_id_list.length > 0 ? ')' : ''
+  table
+    thead
+      tr
+        th Name
+        th Description
+        th Users
+    tbody
+      for account in account_list.sort((a, b) => b.order - a.order)
+        tr
+          td: a(href=`edit_account/${account._id}`)= account.name
+          td= account.description
+          td= user_list.filter(user => account.user_id_list.some(id => user._id.equals(id))).map(user => user.name).join(", ")

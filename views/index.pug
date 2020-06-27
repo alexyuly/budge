@@ -9,18 +9,24 @@ block content
     li: a(href="new_transaction") New Transaction...
   h2 Transactions
   table
+    - const sortedAccountList = account_list.sort((a, b) => b.order - a.order);
     thead
       tr
         th Date/Time
         th Description
         th Category
-        for account in account_list
-          th= account.name
+        for account in sortedAccountList
+          - const accountUserList = user_list.filter(user => account.user_id_list.some(id => user._id.equals(id)));
+          th
+            =account.name
+            =accountUserList.length > 0 ? " (" : ""
+            =accountUserList.map(user => user.name).join(", ")
+            =accountUserList.length > 0 ? ")" : ""
     tbody
       for transaction in transaction_list.sort((a, b) => Number(new Date(b.datetime)) - Number(new Date(a.datetime)))
         tr
           td= new Date(transaction.datetime).toLocaleString()
           td= transaction.description
           td= category_list.filter(category => transaction.category_id_list.some(id => category._id.equals(id))).map(category => category.name).join(", ")
-          for account in account_list
+          for account in sortedAccountList
             td= account._id.equals(transaction.source_account_id) ? `($${transaction.usd_amount})` : account._id.equals(transaction.target_account_id) ? `$${transaction.usd_amount}` : ''

@@ -5,6 +5,10 @@ const parseHtmlCheckboxes = require("./helpers/parseHtmlCheckboxes");
 function validateAccount(account) {
   assert(typeof account.name === "string", "Account name must be a string.");
   assert(
+    typeof account.description === "string",
+    "Account description must be a string."
+  );
+  assert(
     !isNaN(account.order === "number"),
     "Account order must be a valid number"
   );
@@ -14,6 +18,7 @@ function validateAccount(account) {
 function parseAccount(account) {
   return {
     name: account.name,
+    description: account.description,
     order: account.order === "" ? null : Number(account.order),
     user_id_list: parseHtmlCheckboxes(account, "user_"),
   };

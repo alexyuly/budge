@@ -23,13 +23,11 @@ block content
     label Source Account
       select(name="source_account_id")
         for account in account_list
-          option(value=account._id)
-            =account.name
+          option(value=account._id)= account.name
     label Target Account
       select(name="target_account_id")
         for account in account_list
-          option(value=account._id)
-            =account.name
+          option(value=account._id)= account.name
     fieldset
       legend Categories
       for category in category_list

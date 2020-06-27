@@ -8,6 +8,8 @@ block content
   form(action=account._id, method="post")
     label Name 
       input(type="text", name="name", autofocus=true, value=account.name)
+    label Description 
+      input(type="text", name="description", value=account.description)
     fieldset
       legend Users
       for user in user_list
