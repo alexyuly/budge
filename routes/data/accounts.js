@@ -1,21 +1,21 @@
 const assert = require("assert");
 const { ObjectID } = require("mongodb");
+const parseHtmlCheckboxes = require("./helpers/parseHtmlCheckboxes");
 
 function validateAccount(account) {
   assert(typeof account.name === "string", "Account name must be a string.");
   assert(
-    typeof account.order === "number" || account.order === "",
-    "Account order must be a number or an empty string."
+    !isNaN(account.order === "number"),
+    "Account order must be a valid number"
   );
+  // TODO Validate user_id_list?
 }
 
 function parseAccount(account) {
   return {
     name: account.name,
-    order: account.order === "" ? null : account.order,
-    owner_user_id_list: Object.keys(account)
-      .filter((key) => key.startsWith("user_"))
-      .map((key) => new ObjectID(key.slice("user_".length))),
+    order: account.order === "" ? null : Number(account.order),
+    user_id_list: parseHtmlCheckboxes(account, "user_"),
   };
 }
 

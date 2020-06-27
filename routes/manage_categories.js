@@ -1,12 +1,12 @@
 const express = require("express");
-const data = require("./data/categories");
+const { getAllCategories } = require("./data/categories");
 
 module.exports = function (db) {
   const router = express.Router();
 
   router.get("/", async function (req, res, next) {
     try {
-      const category_list = await data.getAllCategories(db);
+      const category_list = await getAllCategories(db);
       res.render("manage_categories", {
         category_list,
       });

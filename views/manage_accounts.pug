@@ -10,7 +10,7 @@ block content
     for account in account_list
       li: a(href=`edit_account/${account._id}`)
         = account.name
-        - const account_owner_user_id_list = user_list.filter(user => account.owner_user_id_list.some(id => user._id.equals(id)));
-        = account_owner_user_id_list.length > 0 ? ' (' : ''
-        = account_owner_user_id_list.map(user => user.name).join(', ')
-        = account_owner_user_id_list.length > 0 ? ')' : ''
+        - const account_user_id_list = user_list.filter(user => account.user_id_list.some(id => user._id.equals(id)));
+        = account_user_id_list.length > 0 ? ' (' : ''
+        = account_user_id_list.map(user => user.name).join(', ')
+        = account_user_id_list.length > 0 ? ')' : ''

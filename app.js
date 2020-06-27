@@ -19,6 +19,8 @@ const manageCategoriesRouter = require("./routes/manage_categories");
 const newCategoryRouter = require("./routes/new_category");
 const editCategoryRouter = require("./routes/edit_category");
 
+const newTransactionRouter = require("./routes/new_transaction");
+
 module.exports = function (db) {
   const app = express();
 
@@ -32,7 +34,7 @@ module.exports = function (db) {
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, "public")));
 
-  app.use("/", indexRouter);
+  app.use("/", indexRouter(db));
 
   app.use("/manage_users", manageUsersRouter(db));
   app.use("/new_user", newUserRouter(db));
@@ -46,6 +48,8 @@ module.exports = function (db) {
   app.use("/manage_categories", manageCategoriesRouter(db));
   app.use("/new_category", newCategoryRouter(db));
   app.use("/edit_category", editCategoryRouter(db));
+
+  app.use("/new_transaction", newTransactionRouter(db));
 
   // catch 404 and forward to error handler
   app.use(function (req, res, next) {

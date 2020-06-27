@@ -1,5 +1,5 @@
 const express = require("express");
-const data = require("./data/categories");
+const { newCategory } = require("./data/categories");
 
 module.exports = function (db) {
   const router = express.Router();
@@ -10,7 +10,7 @@ module.exports = function (db) {
 
   router.post("/", async function (req, res, next) {
     try {
-      await data.newCategory(db, req.body);
+      await newCategory(db, req.body);
       res.redirect("../manage_categories");
     } catch (error) {
       next(error);

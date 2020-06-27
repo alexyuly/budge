@@ -1,7 +1,7 @@
 const express = require("express");
 const { getAllAccounts } = require("./data/accounts");
 const { getAllCategories } = require("./data/categories");
-const { getAllTransactions } = require("./data/transactions");
+const { newTransaction } = require("./data/transactions");
 
 module.exports = function (db) {
   const router = express.Router();
@@ -10,12 +10,19 @@ module.exports = function (db) {
     try {
       const account_list = await getAllAccounts(db);
       const category_list = await getAllCategories(db);
-      const transaction_list = await getAllTransactions(db);
-      res.render("index", {
+      res.render("new_transaction", {
         account_list,
         category_list,
-        transaction_list,
       });
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.post("/", async function (req, res, next) {
+    try {
+      await newTransaction(db, req.body);
+      res.redirect("../");
     } catch (error) {
       next(error);
     }

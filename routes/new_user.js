@@ -1,5 +1,5 @@
 const express = require("express");
-const data = require("./data/users");
+const { newUser } = require("./data/users");
 
 module.exports = function (db) {
   const router = express.Router();
@@ -10,7 +10,7 @@ module.exports = function (db) {
 
   router.post("/", async function (req, res, next) {
     try {
-      await data.newUser(db, req.body);
+      await newUser(db, req.body);
       res.redirect("../manage_users");
     } catch (error) {
       next(error);

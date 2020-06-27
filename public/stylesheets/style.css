@@ -19,7 +19,8 @@ li {
   margin: 5px 0 5px 0;
 }
 
-input {
+input,
+select {
   font: 15px sans-serif;
 }
 
@@ -34,6 +35,8 @@ form fieldset label {
 
 form input[type="text"],
 form input[type="number"],
+form input[type="datetime-local"],
+select,
 form fieldset {
   display: block;
   margin: 5px 0 15px 0;
@@ -49,4 +52,17 @@ form button[type="submit"] {
   font-weight: bold;
   margin: 15px 0 15px 0;
   padding: 5px 15px 5px 15px;
+}
+
+th,
+td {
+  border-left: 1px solid #ffffff;
+  border-top: 1px solid #ffffff;
+  padding: 5px;
+  text-align: left;
+}
+
+table {
+  border-bottom: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
 }

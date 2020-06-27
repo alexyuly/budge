@@ -4,15 +4,15 @@ const { ObjectID } = require("mongodb");
 function validateCategory(category) {
   assert(typeof category.name === "string", "Category name must be a string.");
   assert(
-    typeof category.order === "number" || category.order === "",
-    "Category order must be a number or an empty string."
+    !isNaN(category.order === "number"),
+    "Category order must be a valid number"
   );
 }
 
 function parseCategory(category) {
   return {
     name: category.name,
-    order: category.order === "" ? null : category.order,
+    order: category.order === "" ? null : Number(category.order),
   };
 }
 

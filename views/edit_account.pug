@@ -7,15 +7,15 @@ block content
   h2 Edit Account
   form(action=account._id, method="post")
     label Name 
-      input(type="text", name="name", autoFocus=true, value=account.name)
+      input(type="text", name="name", autofocus=true, value=account.name)
     fieldset
-      legend Owners
+      legend Users
       for user in user_list
         label
           input(
             type="checkbox",
             name=`user_${user._id}`,
-            checked=account.owner_user_id_list.some(id => user._id.equals(id))
+            checked=account.user_id_list.some(id => user._id.equals(id))
           )
           =user.name
     label List Order

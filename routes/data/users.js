@@ -3,16 +3,13 @@ const { ObjectID } = require("mongodb");
 
 function validateUser(user) {
   assert(typeof user.name === "string", "User name must be a string.");
-  assert(
-    typeof user.order === "number" || user.order === "",
-    "User order must be a number or an empty string."
-  );
+  assert(!isNaN(user.order === "number"), "User order must be a valid number");
 }
 
 function parseUser(user) {
   return {
     name: user.name,
-    order: user.order === "" ? null : user.order,
+    order: user.order === "" ? null : Number(user.order),
   };
 }
 

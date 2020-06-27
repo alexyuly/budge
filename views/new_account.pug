@@ -7,9 +7,9 @@ block content
   h2 New Account
   form(action="new_account", method="post")
     label Name 
-      input(type="text", name="name", autoFocus=true)
+      input(type="text", name="name", autofocus=true)
     fieldset
-      legend Owners
+      legend Users
       for user in user_list
         label
           input(type="checkbox", name=`user_${user._id}`)

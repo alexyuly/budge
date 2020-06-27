@@ -1,27 +1,27 @@
 const express = require("express");
-const data = require("./data/users");
+const { getUser, deleteUser } = require("./data/users");
 
 module.exports = function (db) {
   const router = express.Router();
 
-  router.get("/:id", function (req, res, next) {
-    data
-      .getUser(db, req.params.id)
-      .then(function (user) {
-        res.render("delete_user", {
-          user,
-        });
-      })
-      .catch(next);
+  router.get("/:id", async function (req, res, next) {
+    try {
+      const user = await getUser(db, req.params.id);
+      res.render("delete_user", {
+        user,
+      });
+    } catch (error) {
+      next(error);
+    }
   });
 
-  router.post("/:id", function (req, res, next) {
-    data
-      .deleteUser(db, req.params.id)
-      .then(function () {
-        res.redirect("../manage_users");
-      })
-      .catch(next);
+  router.post("/:id", async function (req, res, next) {
+    try {
+      await deleteUser(db, req.params.id);
+      res.redirect("../manage_users");
+    } catch (error) {
+      next(error);
+    }
   });
 
   return router;
