@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h2
+    span Transactions
+    a(href="new_transaction"): img(class="menu", src="/icons/add_circle-white-24dp.svg", title="New Transaction...")
+  ul
+    if transaction_list.length === 0
+      li: a(href="new_transaction") Add a Transaction...
+    for transaction in transaction_list.sort((a, b) => Number(new Date(b.datetime)) - Number(new Date(a.datetime)))
+      li: a(href=`edit_transaction/${transaction._id}`)
+        h3= transaction.name
+        h4
+          ="$"
+          =transaction.usd_amount
+          =transaction.withdrawal_account_id ? ` from ${account_list.find(account => account._id.equals(transaction.withdrawal_account_id)).name}` : ""
+          =transaction.deposit_account_id ? ` to ${account_list.find(account => account._id.equals(transaction.deposit_account_id)).name}` : ""
+        time(datetime=transaction.datetime)= new Date(transaction.datetime).toLocaleDateString()

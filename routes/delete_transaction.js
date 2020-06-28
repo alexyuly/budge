@@ -1,14 +1,14 @@
 const express = require("express");
-const { getCategory, deleteCategory } = require("./data/categories");
+const { getTransaction, deleteTransaction } = require("./data/transactions");
 
 module.exports = function (db) {
   const router = express.Router();
 
   router.get("/:id", async function (req, res, next) {
     try {
-      const category = await getCategory(db, req.params.id);
-      res.render("delete_category", {
-        category,
+      const transaction = await getTransaction(db, req.params.id);
+      res.render("delete_transaction", {
+        transaction,
       });
     } catch (error) {
       next(error);
@@ -17,8 +17,8 @@ module.exports = function (db) {
 
   router.post("/:id", async function (req, res, next) {
     try {
-      await deleteCategory(db, req.params.id);
-      res.redirect("../manage_categories");
+      await deleteTransaction(db, req.params.id);
+      res.redirect("../");
     } catch (error) {
       next(error);
     }

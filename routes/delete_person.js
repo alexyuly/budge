@@ -1,14 +1,14 @@
 const express = require("express");
-const { getCategory, editCategory } = require("./data/categories");
+const { getPerson, deletePerson } = require("./data/people");
 
 module.exports = function (db) {
   const router = express.Router();
 
   router.get("/:id", async function (req, res, next) {
     try {
-      const category = await getCategory(db, req.params.id);
-      res.render("edit_category", {
-        category,
+      const person = await getPerson(db, req.params.id);
+      res.render("delete_person", {
+        person,
       });
     } catch (error) {
       next(error);
@@ -17,8 +17,8 @@ module.exports = function (db) {
 
   router.post("/:id", async function (req, res, next) {
     try {
-      await editCategory(db, req.params.id, req.body);
-      res.redirect("../manage_categories");
+      await deletePerson(db, req.params.id);
+      res.redirect("../manage_people");
     } catch (error) {
       next(error);
     }

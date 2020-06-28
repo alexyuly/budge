@@ -3,6 +3,6 @@ extends layout
 block content
   h2(class="back")
     a(href="javascript:history.back()"): img(class="menu", src="/icons/arrow_back-white-24dp.svg", title="No, Cancel and Go Back...")
-    span Delete Account "#{account.name}"?
-  form(action=account._id, method="post")
-    button(type="submit") Yes, Delete Account "#{account.name}"
+    span Delete Budget "#{budget.name}"?
+  form(action=budget._id, method="post")
+    button(type="submit") Yes, Delete Budget "#{budget.name}"

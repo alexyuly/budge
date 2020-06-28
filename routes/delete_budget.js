@@ -1,14 +1,14 @@
 const express = require("express");
-const { getUser, deleteUser } = require("./data/users");
+const { getBudget, deleteBudget } = require("./data/budgets");
 
 module.exports = function (db) {
   const router = express.Router();
 
   router.get("/:id", async function (req, res, next) {
     try {
-      const user = await getUser(db, req.params.id);
-      res.render("delete_user", {
-        user,
+      const budget = await getBudget(db, req.params.id);
+      res.render("delete_budget", {
+        budget,
       });
     } catch (error) {
       next(error);
@@ -17,8 +17,8 @@ module.exports = function (db) {
 
   router.post("/:id", async function (req, res, next) {
     try {
-      await deleteUser(db, req.params.id);
-      res.redirect("../manage_users");
+      await deleteBudget(db, req.params.id);
+      res.redirect("../manage_budgets");
     } catch (error) {
       next(error);
     }

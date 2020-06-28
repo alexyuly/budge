@@ -1,25 +1,28 @@
 extends layout
 
 block content
-  h2 Edit Account
-  ul
-    a(href="../manage_accounts"): li Back to Accounts...
-    a(href=`../delete_account/${account._id}`): li Delete Account...
+  h2(class="back")
+    a(href="javascript:history.back()"): img(class="menu", src="/icons/arrow_back-white-24dp.svg", title="Back to Accounts...")
+    div
+      span Edit Account
+      a(href=`../delete_account/${account._id}`): img(class="menu", src="/icons/delete_forever-white-24dp.svg", title="Delete Account...")
   form(action=account._id, method="post")
     label Name 
-      input(type="text", name="name", autofocus=true, value=account.name)
+      input(type="text", name="name", autofocus, value=account.name)
     label Description 
       input(type="text", name="description", value=account.description)
     fieldset
-      legend Users
-      for user in user_list
+      legend People
+      if person_list.length === 0
+        a(href="/new_person") Add a Person...
+      for person in person_list
         label
           input(
             type="checkbox",
-            name=`user_${user._id}`,
-            checked=account.user_id_list.some(id => user._id.equals(id))
+            name=`person_${person._id}`,
+            checked=account.person_id_list.some(id => person._id.equals(id))
           )
-          =user.name
-    label List Order
+          =person.name
+    label Order
       input(type="number", name="order", value=account.order)
     button(type="submit") Save Account

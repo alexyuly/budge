@@ -1,36 +1,40 @@
 extends layout
 
 block content
-  h2 New Transaction
-  ul
-    a(href="../"): li Back to Transactions...
-  form(id="new_transaction_form", action="new_transaction",  method="post")
+  h2(class="back")
+    a(href="javascript:history.back()"): img(class="menu", src="/icons/arrow_back-white-24dp.svg", title="Back to Transactions...")
+    span New Transaction
+  form(action="new_transaction",  method="post")
+    label Name
+      input(type="text", name="name", autofocus)
+    label Amount $
+      input(type="number", name="usd_amount", step=0.01, value=0)
+    label Withdrawal Account
+      select(name="withdrawal_account_id")
+        option(value="") Income
+        for account in account_list
+          option(value=account._id)= account.name
+    label Deposit Account
+      select(name="deposit_account_id")
+        option(value="") Expense
+        for account in account_list
+          option(value=account._id)= account.name
     label Date/Time
-      - const dateNow = Date.now();
-      - const dateISOString = new Date(dateNow - new Date(dateNow).getTimezoneOffset()*60000).toISOString();
+      - dateNow = Date.now();
+      - dateISOString = new Date(dateNow - new Date(dateNow).getTimezoneOffset()*60000).toISOString();
+      - datetime = dateISOString.substring(0, dateISOString.length - 1);
       input(
         type="datetime-local",
         id="datetime",
         name="datetime",
-        value=dateISOString.substring(0, dateISOString.length - 8)
-        autofocus=true
+        value=datetime
       )
-    label Description
-      input(type="text", name="description")
-    label Amount $
-      input(type="number", name="usd_amount", value=0, step=0.01)
-    label Source Account
-      select(name="source_account_id")
-        for account in account_list
-          option(value=account._id)= account.name
-    label Target Account
-      select(name="target_account_id")
-        for account in account_list
-          option(value=account._id)= account.name
     fieldset
-      legend Categories
-      for category in category_list
+      legend Budgets
+      if budget_list.length === 0
+        a(href="/new_budget") Add a Budget...
+      for budget in budget_list
         label
-          input(type="checkbox", name=`category_${category._id}`)
-          =category.name
-    button(type="submit") Submit
+          input(type="checkbox", name=`budget_${budget._id}`)
+          =budget.name
+    button(type="submit") Save Transaction

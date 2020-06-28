@@ -6,15 +6,19 @@ html
     link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap")
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
   body
+    h1
+      span budge
+      img(class="menu", src="/icons/menu-white-24dp.svg", role="presentation")
+      img(class="close", src="/icons/close-white-24dp.svg", role="presentation")
     nav
-      h1
-        img(class="menu", src="/icons/menu-white-24dp.svg", role="presentation")
-        img(class="close", src="/icons/close-white-24dp.svg", role="presentation")
-        span budge
       ul
-        a(href="/"): li Transactions
-        a(href="/manage_accounts"): li Accounts
-        a(href="/manage_categories"): li Categories
-        a(href="/manage_users"): li Users
+        li: a(href="/manage_accounts") Accounts
+          img(class="menu", src="/icons/account_balance-white-24dp.svg")
+        li: a(href="/manage_budgets") Budgets
+          img(class="menu", src="/icons/pie_chart-white-24dp.svg")
+        li: a(href="/manage_people") People
+          img(class="menu", src="/icons/people-white-24dp.svg")
+        li: a(href="/") Transactions
+          img(class="menu", src="/icons/compare_arrows-white-24dp.svg")
     block content
     script(src="/scripts/layout.js")

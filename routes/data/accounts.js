@@ -4,26 +4,26 @@ const parseHtmlCheckboxes = require("./helpers/parseHtmlCheckboxes");
 
 function validateAccount(account) {
   assert(
-    typeof account.name === "string" && account.name.trim(),
-    "Account name must be a non-empty string."
-  );
-  assert(
     typeof account.description === "string",
     "Account description must be a string."
+  );
+  assert(
+    typeof account.name === "string" && account.name.trim(),
+    "Account name must be a non-empty string."
   );
   assert(
     !isNaN(account.order === "number"),
     "Account order must be a valid number"
   );
-  // TODO Validate user_id_list?
+  // TODO Validate person_id_list?
 }
 
 function parseAccount(account) {
   return {
-    name: account.name.trim(),
     description: account.description.trim(),
-    order: account.order === "" ? null : Number(account.order),
-    user_id_list: parseHtmlCheckboxes(account, "user_"),
+    name: account.name.trim(),
+    order: Number(account.order),
+    person_id_list: parseHtmlCheckboxes(account, "person_"),
   };
 }
 

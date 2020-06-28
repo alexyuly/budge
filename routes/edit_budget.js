@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAccount, editAccount } = require("./data/accounts");
+const { getBudget, editBudget } = require("./data/budgets");
 const { getAllPeople } = require("./data/people");
 
 module.exports = function (db) {
@@ -7,10 +7,10 @@ module.exports = function (db) {
 
   router.get("/:id", async function (req, res, next) {
     try {
-      const account = await getAccount(db, req.params.id);
+      const budget = await getBudget(db, req.params.id);
       const person_list = await getAllPeople(db);
-      res.render("edit_account", {
-        account,
+      res.render("edit_budget", {
+        budget,
         person_list,
       });
     } catch (error) {
@@ -20,8 +20,8 @@ module.exports = function (db) {
 
   router.post("/:id", async function (req, res, next) {
     try {
-      await editAccount(db, req.params.id, req.body);
-      res.redirect("../manage_accounts");
+      await editBudget(db, req.params.id, req.body);
+      res.redirect("../manage_budgets");
     } catch (error) {
       next(error);
     }

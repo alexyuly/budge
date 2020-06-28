@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h2(class="back")
+    a(href="javascript:history.back()"): img(class="menu", src="/icons/arrow_back-white-24dp.svg", title="Back to People...")
+    span New Person
+  form(action="new_person", method="post")
+    label Name 
+      input(type="text", name="name", autofocus)
+    label Order
+      input(type="number", name="order")
+    button(type="submit") Save Person

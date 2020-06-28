@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h2
+    span People
+    a(href="new_person"): img(class="menu", src="/icons/add_circle-white-24dp.svg", title="New Person...")
+  ul
+    if person_list.length === 0
+      li: a(href="new_person") Add a Person...
+    for person in person_list.sort((a, b) => a.order - b.order)
+      li: a(href=`edit_person/${person._id}`): h3= person.name

@@ -1,14 +1,14 @@
 const express = require("express");
-const { getAllCategories } = require("./data/categories");
+const { getAllBudgets } = require("./data/budgets");
 
 module.exports = function (db) {
   const router = express.Router();
 
   router.get("/", async function (req, res, next) {
     try {
-      const category_list = await getAllCategories(db);
-      res.render("manage_categories", {
-        category_list,
+      const budget_list = await getAllBudgets(db);
+      res.render("manage_budgets", {
+        budget_list,
       });
     } catch (error) {
       next(error);

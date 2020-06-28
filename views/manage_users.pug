@@ -1,8 +1,0 @@
-extends layout
-
-block content
-  h2 Users
-  ul
-    a(href="new_user"): li New User...
-    for user in user_list.sort((a, b) => a.order - b.order)
-       a(href=`edit_user/${user._id}`): li: h3= user.name

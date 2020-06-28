@@ -16,9 +16,28 @@ body {
   color: #ffffff;
   margin: 0 0 50px 0;
   padding: 0;
+  touch-action: manipulation;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+body.menu-open h1 img.close {
+  display: initial;
+}
+
+body.menu-open h1 img.menu {
+  display: none;
+}
+
+body.menu-open nav ul {
+  height: 100%;
+  overflow: scroll;
+  transition: height 0.2s ease-in;
 }
 
 a {
@@ -28,6 +47,14 @@ a {
 
 a:hover {
   color: #99ff99;
+}
+
+div.error {
+  margin: 15px;
+}
+
+div.error h2 {
+  margin: 10px 0 10px 0;
 }
 
 form {
@@ -66,18 +93,64 @@ form button[type="submit"] {
   border-radius: 5px;
   cursor: pointer;
   display: block;
+  font-size: 1.2rem;
   font-weight: bold;
   margin: 15px 0 15px 0;
   padding: 5px 15px 5px 15px;
+  width: 100%;
 }
 
 form button[type="submit"]:active {
   background-color: #99ff99;
 }
 
+h1 {
+  align-items: center;
+  background-color: #222222;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 10px 15px 10px 15px;
+  position: sticky;
+  top: 0;
+}
+
+h1 img.close {
+  display: none;
+}
+
+h1 span {
+  font-size: 1.5rem;
+}
+
 h2 {
-  margin: 10px 15px 10px 15px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
   padding: 0;
+}
+
+h2.back {
+  justify-content: flex-start;
+}
+
+h2 div {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+h2 img {
+  display: flex;
+  padding: 5px;
+}
+
+h2 span {
+  margin: 0 0 0 5px;
 }
 
 h3 {
@@ -99,54 +172,35 @@ time {
 
 li {
   border-top: 1px solid #555555;
-  margin: 0;
-  padding: 10px 15px 10px 15px;
-}
-
-nav h1 {
-  align-items: center;
-  background-color: #222222;
-  cursor: pointer;
   display: flex;
   margin: 0;
-  padding: 10px;
+  padding: 0;
 }
 
-nav h1 span {
-  margin: 0 5px 0 5px;
+li a {
+  display: flex;
+  flex-flow: column nowrap;
+  flex-grow: 1;
+  padding: 10px 15px 10px 15px;
 }
 
 nav ul {
   background-color: #222222;
-  height: 100%;
-  left: -100%;
+  height: 0;
+  overflow: hidden;
   position: absolute;
-  transition: left 0.2s;
+  transition: height 0.2s ease-out;
   width: 100%;
 }
 
-nav h1 img.close {
-  display: none;
-}
-
-nav.open ul {
-  left: 0;
-}
-
-nav.open h1 img.close {
-  display: initial;
-}
-
-nav.open h1 img.menu {
-  display: none;
+nav ul li a {
+  align-items: center;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
 
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.error {
-  margin: 15px;
 }

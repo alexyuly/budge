@@ -1,15 +1,15 @@
 const express = require("express");
 const { newAccount } = require("./data/accounts");
-const { getAllUsers } = require("./data/users");
+const { getAllPeople } = require("./data/people");
 
 module.exports = function (db) {
   const router = express.Router();
 
   router.get("/", async function (req, res, next) {
     try {
-      const user_list = await getAllUsers(db);
+      const person_list = await getAllPeople(db);
       res.render("new_account", {
-        user_list,
+        person_list,
       });
     } catch (error) {
       next(error);

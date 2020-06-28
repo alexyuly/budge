@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h2
+    span Budgets
+    a(href="new_budget"): img(class="menu", src="/icons/add_circle-white-24dp.svg", title="New Budget...")
+  ul
+    if budget_list.length === 0
+      li: a(href="new_budget") Add a Budget...
+    for budget in budget_list.sort((a, b) => a.order - b.order)
+      li: a(href=`edit_budget/${budget._id}`): h3= budget.name

@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h2(class="back")
+    a(href="javascript:history.back()"): img(class="menu", src="/icons/arrow_back-white-24dp.svg", title="Back to Budgets...")
+    span New Budget
+  form(action="new_budget", method="post")
+    label Name 
+      input(type="text", name="name", autofocus)
+    fieldset
+      legend People
+      if person_list.length === 0
+        a(href="/new_person") Add a Person...
+      for person in person_list
+        label
+          input(type="checkbox", name=`person_${person._id}`, checked)
+          =person.name
+    label Order
+      input(type="number", name="order")
+    button(type="submit") Save Budget

@@ -1,15 +1,18 @@
 extends layout
 
 block content
-  h2 Accounts
+  h2
+    span Accounts
+    a(href="new_account"): img(class="menu", src="/icons/add_circle-white-24dp.svg", title="New Account...")
   ul
-    a(href="new_account"): li New Account...
+    if account_list.length === 0
+      li: a(href="new_account") Add an Account...
     for account in account_list.sort((a, b) => a.order - b.order)
-      a(href=`edit_account/${account._id}`): li
+      li: a(href=`edit_account/${account._id}`)
         h3= account.name
         h4= account.description
-        - const accountUserList = user_list.filter(user => account.user_id_list.some(id => user._id.equals(id)));
+        - account_person_list = person_list.filter(person => account.person_id_list.some(id => person._id.equals(id)));
         h5
-          =accountUserList.length > 0 ? " (" : ""
-          =accountUserList.map(user => user.name).join(", ")
-          =accountUserList.length > 0 ? ")" : ""
+          =account_person_list.length > 0 ? " (" : ""
+          =account_person_list.map(person => person.name).join(", ")
+          =account_person_list.length > 0 ? ")" : ""

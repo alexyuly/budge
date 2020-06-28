@@ -4,24 +4,25 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
-const indexRouter = require("./routes/index");
+const manage_accounts = require("./routes/manage_accounts");
+const new_account = require("./routes/new_account");
+const edit_account = require("./routes/edit_account");
+const delete_account = require("./routes/delete_account");
 
-const manageUsersRouter = require("./routes/manage_users");
-const newUserRouter = require("./routes/new_user");
-const editUserRouter = require("./routes/edit_user");
-const deleteUserRouter = require("./routes/delete_user");
+const manage_budgets = require("./routes/manage_budgets");
+const new_budget = require("./routes/new_budget");
+const edit_budget = require("./routes/edit_budget");
+const delete_budget = require("./routes/delete_budget");
 
-const manageAccountsRouter = require("./routes/manage_accounts");
-const newAccountRouter = require("./routes/new_account");
-const editAccountRouter = require("./routes/edit_account");
-const deleteAccountRouter = require("./routes/delete_account");
+const manage_people = require("./routes/manage_people");
+const new_person = require("./routes/new_person");
+const edit_person = require("./routes/edit_person");
+const delete_person = require("./routes/delete_person");
 
-const manageCategoriesRouter = require("./routes/manage_categories");
-const newCategoryRouter = require("./routes/new_category");
-const editCategoryRouter = require("./routes/edit_category");
-const deleteCategoryRouter = require("./routes/delete_category");
-
-const newTransactionRouter = require("./routes/new_transaction");
+const manage_transactions = require("./routes/manage_transactions");
+const new_transaction = require("./routes/new_transaction");
+const edit_transaction = require("./routes/edit_transaction");
+const delete_transaction = require("./routes/delete_transaction");
 
 module.exports = function (db) {
   const app = express();
@@ -36,24 +37,25 @@ module.exports = function (db) {
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, "public")));
 
-  app.use("/", indexRouter(db));
+  app.use("/manage_accounts", manage_accounts(db));
+  app.use("/new_account", new_account(db));
+  app.use("/edit_account", edit_account(db));
+  app.use("/delete_account", delete_account(db));
 
-  app.use("/manage_users", manageUsersRouter(db));
-  app.use("/new_user", newUserRouter(db));
-  app.use("/edit_user", editUserRouter(db));
-  app.use("/delete_user", deleteUserRouter(db));
+  app.use("/manage_budgets", manage_budgets(db));
+  app.use("/new_budget", new_budget(db));
+  app.use("/edit_budget", edit_budget(db));
+  app.use("/delete_budget", delete_budget(db));
 
-  app.use("/manage_accounts", manageAccountsRouter(db));
-  app.use("/new_account", newAccountRouter(db));
-  app.use("/edit_account", editAccountRouter(db));
-  app.use("/delete_account", deleteAccountRouter(db));
+  app.use("/manage_people", manage_people(db));
+  app.use("/new_person", new_person(db));
+  app.use("/edit_person", edit_person(db));
+  app.use("/delete_person", delete_person(db));
 
-  app.use("/manage_categories", manageCategoriesRouter(db));
-  app.use("/new_category", newCategoryRouter(db));
-  app.use("/edit_category", editCategoryRouter(db));
-  app.use("/delete_category", deleteCategoryRouter(db));
-
-  app.use("/new_transaction", newTransactionRouter(db));
+  app.use("/", manage_transactions(db));
+  app.use("/new_transaction", new_transaction(db));
+  app.use("/edit_transaction", edit_transaction(db));
+  app.use("/delete_transaction", delete_transaction(db));
 
   // catch 404 and forward to error handler
   app.use(function (req, res, next) {

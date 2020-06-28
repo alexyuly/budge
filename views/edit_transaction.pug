@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  h2(class="back")
+    a(href="javascript:history.back()"): img(class="menu", src="/icons/arrow_back-white-24dp.svg", title="Back to Transactions...")
+    div
+      span Edit Transaction
+      a(href=`../delete_transaction/${transaction._id}`): img(class="menu", src="/icons/delete_forever-white-24dp.svg", title="Delete Transaction...")
+  form(action=transaction._id,  method="post")
+    label Name
+      input(type="text", name="name", autofocus, value=transaction.name)
+    label Amount $
+      input(type="number", name="usd_amount", step=0.01, value=transaction.usd_amount)
+    label Withdrawal Account
+      select(name="withdrawal_account_id")
+        option(value="") Income
+        for account in account_list
+          option(
+            value=account._id,
+            selected=(!account._id && !transaction.withdrawal_account_id) || account._id.equals(transaction.withdrawal_account_id)
+          )= account.name
+    label Deposit Account
+      select(name="deposit_account_id", value=transaction.deposit_account_id || "")
+        option(value="") Expense
+        for account in account_list
+          option(
+            value=account._id,
+            selected=(!account._id && !transaction.deposit_account_id) || account._id.equals(transaction.deposit_account_id)
+          )= account.name
+    label Date/Time
+      - dateISOString = new Date(transaction.datetime - new Date(transaction.datetime).getTimezoneOffset()*60000).toISOString();
+      - datetime = dateISOString.substring(0, dateISOString.length - 1);
+      input(
+        type="datetime-local",
+        id="datetime",
+        name="datetime",
+        value=datetime
+      )
+    fieldset
+      legend Budgets
+      if budget_list.length === 0
+        a(href="/new_budget") Add a Budget...
+      for budget in budget_list
+        label
+          input(
+            type="checkbox",
+            name=`budget_${budget._id}`,
+            checked=transaction.budget_id_list.some(id => budget._id.equals(id))
+          )
+          =budget.name
+    button(type="submit") Save Transaction

@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h2(class="back")
+    a(href="javascript:history.back()"): img(class="menu", src="/icons/arrow_back-white-24dp.svg", title="Back to People...")
+    div
+      span Edit Person
+      a(href=`../delete_person/${person._id}`): img(class="menu", src="/icons/delete_forever-white-24dp.svg", title="Delete Person...")
+  form(action=person._id, method="post")
+    label Name 
+      input(type="text", name="name", autofocus, value=person.name)
+    label Order
+      input(type="number", name="order", value=person.order)
+    button(type="submit") Save Person

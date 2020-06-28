@@ -1,20 +1,22 @@
 extends layout
 
 block content
-  h2 New Account
-  ul
-    a(href="../manage_accounts"): li Back to Accounts...
+  h2(class="back")
+    a(href="javascript:history.back()"): img(class="menu", src="/icons/arrow_back-white-24dp.svg", title="Back to Accounts...")
+    span New Account
   form(action="new_account", method="post")
     label Name 
-      input(type="text", name="name", autofocus=true)
+      input(type="text", name="name", autofocus)
     label Description 
       input(type="text", name="description")
     fieldset
-      legend Users
-      for user in user_list
+      legend People
+      if person_list.length === 0
+        a(href="/new_person") Add a Person...
+      for person in person_list
         label
-          input(type="checkbox", name=`user_${user._id}`)
-          =user.name
-    label List Order
+          input(type="checkbox", name=`person_${person._id}`)
+          =person.name
+    label Order
       input(type="number", name="order")
-    button(type="submit") Create New Account
+    button(type="submit") Save Account

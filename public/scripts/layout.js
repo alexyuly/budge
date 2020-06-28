@@ -1,9 +1,9 @@
-const navHeading = document.querySelector("nav h1");
-navHeading.addEventListener("click", () => {
-  const nav = document.querySelector("nav");
-  if (nav.classList.contains("open")) {
-    nav.classList.remove("open");
+heading = document.querySelector("h1");
+
+heading.addEventListener("click", () => {
+  if (document.body.classList.contains("menu-open")) {
+    document.body.classList.remove("menu-open");
   } else {
-    nav.classList.add("open");
+    document.body.classList.add("menu-open");
   }
 });

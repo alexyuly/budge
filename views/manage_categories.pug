@@ -1,8 +1,0 @@
-extends layout
-
-block content
-  h2 Categories
-  ul
-    a(href="new_category"): li New Category...
-    for category in category_list.sort((a, b) => a.order - b.order)
-      a(href=`edit_category/${category._id}`): li: h3= category.name

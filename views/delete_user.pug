@@ -1,8 +1,0 @@
-extends layout
-
-block content
-  h2 Delete User "#{user.name}"?
-  ul
-    a(href=`../edit_user/${user._id}`): li No, Cancel and Go Back...
-  form(action=user._id, method="post")
-    button(type="submit") Yes, Delete User "#{user.name}"

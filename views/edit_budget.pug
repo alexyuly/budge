@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h2(class="back")
+    a(href="javascript:history.back()"): img(class="menu", src="/icons/arrow_back-white-24dp.svg", title="Back to Budgets...")
+    div
+      span Edit Budget
+      a(href=`../delete_budget/${budget._id}`): img(class="menu", src="/icons/delete_forever-white-24dp.svg", title="Delete Budget...")
+  form(action=budget._id, method="post")
+    label Name 
+      input(type="text", name="name", autofocus, value=budget.name)
+    fieldset
+      legend People
+      if person_list.length === 0
+        a(href="/new_person") Add a Person...
+      for person in person_list
+        label
+          input(
+            type="checkbox",
+            name=`person_${person._id}`,
+            checked=budget.person_id_list.some(id => person._id.equals(id))
+          )
+          =person.name
+    label Order
+      input(type="number", name="order", value=budget.order)
+    button(type="submit") Save Tag
