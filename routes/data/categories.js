@@ -2,7 +2,10 @@ const assert = require("assert");
 const { ObjectID } = require("mongodb");
 
 function validateCategory(category) {
-  assert(typeof category.name === "string", "Category name must be a string.");
+  assert(
+    typeof category.name === "string" && category.name.trim(),
+    "Category name must be a non-empty string."
+  );
   assert(
     !isNaN(category.order === "number"),
     "Category order must be a valid number"
@@ -11,7 +14,7 @@ function validateCategory(category) {
 
 function parseCategory(category) {
   return {
-    name: category.name,
+    name: category.name.trim(),
     order: category.order === "" ? null : Number(category.order),
   };
 }

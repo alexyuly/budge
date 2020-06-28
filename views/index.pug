@@ -3,13 +3,13 @@ extends layout
 block content
   h2 Transactions
   ul
-    li: a(href="new_transaction") New Transaction...
+    a(href="new_transaction"): li New Transaction...
     for transaction in transaction_list.sort((a, b) => Number(new Date(b.datetime)) - Number(new Date(a.datetime)))
       li
         h3= transaction.description
-        div
+        h4
           ="From "
           =account_list.find(account => account._id.equals(transaction.source_account_id)).name
           =" to "
           =account_list.find(account => account._id.equals(transaction.target_account_id)).name
-        time(datetime=transaction.datetime)= new Date(transaction.datetime).toLocaleString()
+        time(datetime=transaction.datetime)= new Date(transaction.datetime).toLocaleDateString()

@@ -2,6 +2,7 @@ extends layout
 
 block content
   h2 Sorry, but an error occurred.
-  h3= message
-  h4= error.status
-  pre #{error.stack}
+  div(class="error")
+    h3= message
+    h4= error.status
+    pre #{error.stack}

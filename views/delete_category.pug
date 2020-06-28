@@ -3,6 +3,6 @@ extends layout
 block content
   h2 Delete Category "#{category.name}"?
   ul
-    li: a(href=`../edit_category/${category._id}`) No, Cancel and Go Back...
+    a(href=`../edit_category/${category._id}`): li No, Cancel and Go Back...
   form(action=category._id, method="post")
     button(type="submit") Yes, Delete Category "#{category.name}"

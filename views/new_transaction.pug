@@ -3,7 +3,7 @@ extends layout
 block content
   h2 New Transaction
   ul
-    li: a(href="../") Back to Transactions...
+    a(href="../"): li Back to Transactions...
   form(id="new_transaction_form", action="new_transaction",  method="post")
     label Date/Time
       - const dateNow = Date.now();

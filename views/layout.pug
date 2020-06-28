@@ -12,9 +12,9 @@ html
         img(class="close", src="/icons/close-white-24dp.svg", role="presentation")
         span budge
       ul
-        li: a(href="/") Transactions
-        li: a(href="/manage_accounts") Accounts
-        li: a(href="/manage_categories") Categories
-        li: a(href="/manage_users") Users
+        a(href="/"): li Transactions
+        a(href="/manage_accounts"): li Accounts
+        a(href="/manage_categories"): li Categories
+        a(href="/manage_users"): li Users
     block content
     script(src="/scripts/layout.js")

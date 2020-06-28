@@ -3,6 +3,6 @@ extends layout
 block content
   h2 Categories
   ul
-    li: a(href="new_category") New Category...
+    a(href="new_category"): li New Category...
     for category in category_list.sort((a, b) => a.order - b.order)
-      li: a(href=`edit_category/${category._id}`)= category.name
+      a(href=`edit_category/${category._id}`): li: h3= category.name

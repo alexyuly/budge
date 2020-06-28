@@ -8,8 +8,9 @@ function validateTransaction(transaction) {
     "Transaction datetime must be a valid ISO date string"
   );
   assert(
-    typeof transaction.description === "string",
-    "Transaction description must be a string."
+    typeof transaction.description === "string" &&
+      transaction.description.trim(),
+    "Transaction description must be a non-empty string."
   );
   assert(
     !isNaN(transaction.usd_amount === "number"),
@@ -23,7 +24,7 @@ function validateTransaction(transaction) {
 function parseTransaction(transaction) {
   return {
     datetime: new Date(transaction.datetime),
-    description: transaction.description,
+    description: transaction.description.trim(),
     usd_amount: transaction.usd_amount,
     source_account_id: new ObjectID(transaction.source_account_id),
     target_account_id: new ObjectID(transaction.target_account_id),

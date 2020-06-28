@@ -3,7 +3,7 @@ extends layout
 block content
   h2 New Category
   ul
-    li: a(href="../manage_categories") Back to Categories...
+    a(href="../manage_categories"): li Back to Categories...
   form(action="new_category", method="post")
     label Name 
       input(type="text", name="name", autofocus=true)

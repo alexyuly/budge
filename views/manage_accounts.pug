@@ -3,13 +3,13 @@ extends layout
 block content
   h2 Accounts
   ul
-    li: a(href="new_account") New Account...
+    a(href="new_account"): li New Account...
     for account in account_list.sort((a, b) => a.order - b.order)
-      li
-        h3: a(href=`edit_account/${account._id}`)= account.name
-        div= account.description
+      a(href=`edit_account/${account._id}`): li
+        h3= account.name
+        h4= account.description
         - const accountUserList = user_list.filter(user => account.user_id_list.some(id => user._id.equals(id)));
-        div
+        h5
           =accountUserList.length > 0 ? " (" : ""
           =accountUserList.map(user => user.name).join(", ")
           =accountUserList.length > 0 ? ")" : ""

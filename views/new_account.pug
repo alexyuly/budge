@@ -3,7 +3,7 @@ extends layout
 block content
   h2 New Account
   ul
-    li: a(href="../manage_accounts") Back to Accounts...
+    a(href="../manage_accounts"): li Back to Accounts...
   form(action="new_account", method="post")
     label Name 
       input(type="text", name="name", autofocus=true)
