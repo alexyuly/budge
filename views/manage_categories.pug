@@ -1,16 +1,8 @@
 extends layout
 
 block content
-  h2 Navigation
-  ul
-    li: a(href="../") Back to Home...
-    li: a(href="new_category") New Category...
   h2 Categories
-  table
-    thead
-      tr
-        th Name
-    tbody
-      for category in category_list.sort((a, b) => a.order - b.order)
-        tr
-          td: a(href=`edit_category/${category._id}`)= category.name
+  ul
+    li: a(href="new_category") New Category...
+    for category in category_list.sort((a, b) => a.order - b.order)
+      li: a(href=`edit_category/${category._id}`)= category.name

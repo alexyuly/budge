@@ -3,7 +3,18 @@ html
   head
     title Budge
     link(rel="stylesheet", href="/stylesheets/style.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap")
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
   body
-    h1 Budge
+    nav
+      h1
+        img(class="menu", src="/icons/menu-white-24dp.svg", role="presentation")
+        img(class="close", src="/icons/close-white-24dp.svg", role="presentation")
+        span budge
+      ul
+        li: a(href="/") Transactions
+        li: a(href="/manage_accounts") Accounts
+        li: a(href="/manage_categories") Categories
+        li: a(href="/manage_users") Users
     block content
+    script(src="/scripts/layout.js")

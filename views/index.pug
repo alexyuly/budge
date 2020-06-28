@@ -1,32 +1,15 @@
 extends layout
 
 block content
-  h2 Navigation
-  ul
-    li: a(href="manage_users") Users...
-    li: a(href="manage_accounts") Accounts...
-    li: a(href="manage_categories") Categories...
-    li: a(href="new_transaction") New Transaction...
   h2 Transactions
-  table
-    - const sortedAccountList = account_list.sort((a, b) => a.order - b.order);
-    thead
-      tr
-        th Date/Time
-        th Description
-        th Category
-        for account in sortedAccountList
-          - const accountUserList = user_list.filter(user => account.user_id_list.some(id => user._id.equals(id)));
-          th
-            =account.name
-            =accountUserList.length > 0 ? " (" : ""
-            =accountUserList.map(user => user.name).join(", ")
-            =accountUserList.length > 0 ? ")" : ""
-    tbody
-      for transaction in transaction_list.sort((a, b) => Number(new Date(b.datetime)) - Number(new Date(a.datetime)))
-        tr
-          td= new Date(transaction.datetime).toLocaleString()
-          td= transaction.description
-          td= category_list.filter(category => transaction.category_id_list.some(id => category._id.equals(id))).map(category => category.name).join(", ")
-          for account in sortedAccountList
-            td= account._id.equals(transaction.source_account_id) ? `($${transaction.usd_amount})` : account._id.equals(transaction.target_account_id) ? `$${transaction.usd_amount}` : ''
+  ul
+    li: a(href="new_transaction") New Transaction...
+    for transaction in transaction_list.sort((a, b) => Number(new Date(b.datetime)) - Number(new Date(a.datetime)))
+      li
+        h3= transaction.description
+        div
+          ="From "
+          =account_list.find(account => account._id.equals(transaction.source_account_id)).name
+          =" to "
+          =account_list.find(account => account._id.equals(transaction.target_account_id)).name
+        time(datetime=transaction.datetime)= new Date(transaction.datetime).toLocaleString()

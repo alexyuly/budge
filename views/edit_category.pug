@@ -1,14 +1,13 @@
 extends layout
 
 block content
-  h2 Navigation
+  h2 Edit Category
   ul
     li: a(href="../manage_categories") Back to Categories...
-    li: a(href=`../delete_category/${category._id}`) Delete This Category...
-  h2 Edit Category
+    li: a(href=`../delete_category/${category._id}`) Delete Category...
   form(action=category._id, method="post")
     label Name 
       input(type="text", name="name", autofocus=true, value=category.name)
     label List Order
       input(type="number", name="order", value=category.order)
-    button(type="submit") Submit
+    button(type="submit") Save Category

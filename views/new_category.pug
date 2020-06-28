@@ -1,13 +1,12 @@
 extends layout
 
 block content
-  h2 Navigation
+  h2 New Category
   ul
     li: a(href="../manage_categories") Back to Categories...
-  h2 New Category
   form(action="new_category", method="post")
     label Name 
       input(type="text", name="name", autofocus=true)
     label List Order
       input(type="number", name="order")
-    button(type="submit") Submit
+    button(type="submit") Create New Category

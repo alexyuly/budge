@@ -1,11 +1,10 @@
 extends layout
 
 block content
-  h2 Navigation
+  h2 Edit Account
   ul
     li: a(href="../manage_accounts") Back to Accounts...
-    li: a(href=`../delete_account/${account._id}`) Delete This Account...
-  h2 Edit Account
+    li: a(href=`../delete_account/${account._id}`) Delete Account...
   form(action=account._id, method="post")
     label Name 
       input(type="text", name="name", autofocus=true, value=account.name)
@@ -23,4 +22,4 @@ block content
           =user.name
     label List Order
       input(type="number", name="order", value=account.order)
-    button(type="submit") Submit
+    button(type="submit") Save Account

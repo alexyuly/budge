@@ -4,30 +4,37 @@
   }
 }
 
+html,
+input,
+select,
+button {
+  font: 15px 'Roboto Slab', serif;
+}
+
 body {
   background-color: #333333;
   color: #ffffff;
-  font: 15px sans-serif;
-  padding: 30px;
+  margin: 0 0 50px 0;
+  padding: 0;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
 }
 
 a {
-  color: #ccffff;
+  color: #ccffcc;
   text-decoration: none;
 }
 
 a:hover {
-  color: #ccccff;
+  color: #99ff99;
   text-decoration: underline;
 }
 
-li {
-  margin: 5px 0 5px 0;
-}
-
-input,
-select {
-  font: 15px sans-serif;
+form {
+  margin: 10px 15px 10px 15px;
+  padding: 0;
+  max-width: 800px;
 }
 
 form > label {
@@ -44,8 +51,10 @@ form input[type="number"],
 form input[type="datetime-local"],
 select,
 form fieldset {
+  box-sizing: border-box;
   display: block;
   margin: 5px 0 15px 0;
+  width: 100%;
 }
 
 form input[type="checkbox"] {
@@ -53,6 +62,9 @@ form input[type="checkbox"] {
 }
 
 form button[type="submit"] {
+  background-color: #ccffcc;
+  border: 2px solid #555555;
+  border-radius: 5px;
   cursor: pointer;
   display: block;
   font-weight: bold;
@@ -60,15 +72,70 @@ form button[type="submit"] {
   padding: 5px 15px 5px 15px;
 }
 
-table {
-  border-bottom: 1px solid #ffffff;
-  border-right: 1px solid #ffffff;
+form button[type="submit"]:active {
+  background-color: #99ff99;
 }
 
-th,
-td {
-  border-left: 1px solid #ffffff;
-  border-top: 1px solid #ffffff;
-  padding: 5px;
-  text-align: left;
+h2 {
+  margin: 10px 15px 10px 15px;
+  padding: 0;
+}
+
+h3 {
+  margin: 0 0 2px 0;
+}
+
+li {
+  border-top: 1px solid #555555;
+  margin: 0;
+  padding: 10px 15px 10px 15px;
+}
+
+nav h1 {
+  align-items: center;
+  background-color: #222222;
+  cursor: pointer;
+  display: flex;
+  margin: 0;
+  padding: 10px;
+}
+
+nav h1 span {
+  margin: 0 5px 0 5px;
+}
+
+nav ul {
+  background-color: #222222;
+  height: 100%;
+  left: -100%;
+  position: absolute;
+  transition: left 0.2s;
+  width: 100%;
+}
+
+nav h1 img.close {
+  display: none;
+}
+
+nav.open ul {
+  left: 0;
+}
+
+nav.open h1 img.close {
+  display: initial;
+}
+
+nav.open h1 img.menu {
+  display: none;
+}
+
+time {
+  color: #cccccc;
+  font-size: 0.8rem;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

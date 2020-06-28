@@ -1,10 +1,9 @@
 extends layout
 
 block content
-  h2 Navigation
+  h2 New Account
   ul
     li: a(href="../manage_accounts") Back to Accounts...
-  h2 New Account
   form(action="new_account", method="post")
     label Name 
       input(type="text", name="name", autofocus=true)
@@ -18,4 +17,4 @@ block content
           =user.name
     label List Order
       input(type="number", name="order")
-    button(type="submit") Submit
+    button(type="submit") Create New Account

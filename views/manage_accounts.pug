@@ -1,20 +1,15 @@
 extends layout
 
 block content
-  h2 Navigation
-  ul
-    li: a(href="../") Back to Home...
-    li: a(href="new_account") New Account...
   h2 Accounts
-  table
-    thead
-      tr
-        th Name
-        th Description
-        th Users
-    tbody
-      for account in account_list.sort((a, b) => a.order - b.order)
-        tr
-          td: a(href=`edit_account/${account._id}`)= account.name
-          td= account.description
-          td= user_list.filter(user => account.user_id_list.some(id => user._id.equals(id))).map(user => user.name).join(", ")
+  ul
+    li: a(href="new_account") New Account...
+    for account in account_list.sort((a, b) => a.order - b.order)
+      li
+        h3: a(href=`edit_account/${account._id}`)= account.name
+        div= account.description
+        - const accountUserList = user_list.filter(user => account.user_id_list.some(id => user._id.equals(id)));
+        div
+          =accountUserList.length > 0 ? " (" : ""
+          =accountUserList.map(user => user.name).join(", ")
+          =accountUserList.length > 0 ? ")" : ""
