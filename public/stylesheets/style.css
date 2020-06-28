@@ -1,20 +1,20 @@
-@media screen and (max-device-width: 480px){
-  body{
+@media screen and (max-device-width: 480px) {
+  body {
     -webkit-text-size-adjust: none;
   }
 }
 
 html,
+button, 
 input,
-select,
-button {
+select {
   font: 15px 'Roboto Slab', serif;
 }
 
 body {
   background-color: #333333;
   color: #ffffff;
-  margin: 0 0 50px 0;
+  margin: 0;
   padding: 0;
   touch-action: manipulation;
   user-select: none;
@@ -22,22 +22,20 @@ body {
   -webkit-user-select: none;
 }
 
-body.menu-open {
-  overflow: hidden;
-}
-
 body.menu-open h1 img.close {
   display: initial;
 }
 
-body.menu-open h1 img.menu {
+body.menu-open form,
+body.menu-open h1 img.menu,
+body.menu-open h2,
+body.menu-open ul:not([role="navigation"]) {
   display: none;
 }
 
-body.menu-open nav ul {
-  height: 100%;
-  overflow: scroll;
-  transition: height 0.2s ease-in;
+body.menu-open ul[role="navigation"] {
+  height: initial;
+  overflow: initial;
 }
 
 a {
@@ -72,11 +70,11 @@ form fieldset label {
   margin: 5px 0 5px 0;
 }
 
-form input[type="text"],
-form input[type="number"],
+form fieldset,
 form input[type="datetime-local"],
-select,
-form fieldset {
+form input[type="number"],
+form input[type="text"],
+select {
   box-sizing: border-box;
   display: block;
   margin: 5px 0 15px 0;
@@ -133,7 +131,7 @@ h2 {
   padding: 0;
 }
 
-h2.back {
+h2.with-back-button {
   justify-content: flex-start;
 }
 
@@ -184,23 +182,21 @@ li a {
   padding: 10px 15px 10px 15px;
 }
 
-nav ul {
-  background-color: #222222;
-  height: 0;
-  overflow: hidden;
-  position: absolute;
-  transition: height 0.2s ease-out;
-  width: 100%;
-}
-
-nav ul li a {
-  align-items: center;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-}
-
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+ul[role="navigation"] {
+  background-color: #222222;
+  height: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+ul[role="navigation"] li a {
+  align-items: center;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }

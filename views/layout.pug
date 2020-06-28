@@ -10,15 +10,14 @@ html
       span budge
       img(class="menu", src="/icons/menu-white-24dp.svg", role="presentation")
       img(class="close", src="/icons/close-white-24dp.svg", role="presentation")
-    nav
-      ul
-        li: a(href="/manage_accounts") Accounts
-          img(class="menu", src="/icons/account_balance-white-24dp.svg")
-        li: a(href="/manage_budgets") Budgets
-          img(class="menu", src="/icons/pie_chart-white-24dp.svg")
-        li: a(href="/manage_people") People
-          img(class="menu", src="/icons/people-white-24dp.svg")
-        li: a(href="/") Transactions
-          img(class="menu", src="/icons/compare_arrows-white-24dp.svg")
+    ul(role="navigation")
+      li: a(href="/manage_accounts") Accounts
+        img(class="menu", src="/icons/account_balance-white-24dp.svg")
+      li: a(href="/manage_budgets") Budgets
+        img(class="menu", src="/icons/pie_chart-white-24dp.svg")
+      li: a(href="/manage_people") People
+        img(class="menu", src="/icons/people-white-24dp.svg")
+      li: a(href="/") Transactions
+        img(class="menu", src="/icons/compare_arrows-white-24dp.svg")
     block content
     script(src="/scripts/layout.js")
