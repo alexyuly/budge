@@ -13,7 +13,7 @@
     "http-errors": "1.7.3",
     "mongodb": "3.5.9",
     "morgan": "1.10.0",
-    "pug": "3.0.0"
+    "pug": "3.0.1"
   },
   "devDependencies": {
     "husky": "4.2.5",
